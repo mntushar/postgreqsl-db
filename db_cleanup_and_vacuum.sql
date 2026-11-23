@@ -44,6 +44,8 @@ BEGIN
             GET DIAGNOSTICS deleted_count = ROW_COUNT;
             total_deleted := total_deleted + deleted_count;
 
+             COMMIT;
+
             EXIT WHEN deleted_count = 0;
 
             batch_ms := ROUND(EXTRACT(EPOCH FROM (clock_timestamp() - loop_start)) * 1000);
